@@ -1,5 +1,5 @@
 Raindrops r;
-int rain = 1;
+int rain = 10;
 Raindrops [] rainFall = new Raindrops[rain];
 PImage background;
 Catcher c1;
