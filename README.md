@@ -11,3 +11,7 @@ Creation of the Game:
 	-if the raindrop intersects with the catcher, it is caught
 	-if the raindrop is caught, it will disappear and increase the score
 4.If the raindrop hits the ground a third time, game over.
+	-if the game is over, the raindrops will stop falling and "Game Over" text will appear
+	
+	
+**a restart or start button may possibly be created over the course of improving the game; this will be used to begin the game and restart it after Game Over
