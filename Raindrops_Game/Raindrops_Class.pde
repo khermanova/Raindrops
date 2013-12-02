@@ -17,9 +17,13 @@ class Raindrops {
 
   void fall() {
     loc.add(vel);
+  }
+  
+  void reset(){
     if (loc.y > height) {
       loc.y = 0;
     }
   }
+  
 }
 
