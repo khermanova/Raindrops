@@ -5,7 +5,7 @@ class Raindrops {
 
   Raindrops() {
     loc = new PVector(random(width), 0);
-    vel = new PVector(0, random(1, 3));
+    vel = new PVector(0, random(1.5, 3));
     acc = new PVector(0, yAcc);
     d = 30;
     yAcc = 0;
@@ -18,7 +18,7 @@ class Raindrops {
     ellipse(loc.x, loc.y, d, d);
     triangle(loc.x - d/2, loc.y, loc.x, loc.y - d, loc.x + d/2, loc.y);
     //if the score reaches 125+, the raindrop shrinks
-    if (score >= 30) {
+    if (score >= 20) {
       d = 20;
     }
   }
@@ -27,9 +27,11 @@ class Raindrops {
   void fall() {
     vel.add(acc);
     loc.add(vel);
-    if (score >= 40) {
-      yAcc += .3;
+    if (score >= 15) {
+      yAcc += .5;
     }
+    //checking value of yAcc
+    println(yAcc);
   }
 
     //resetting the location of the raindrop

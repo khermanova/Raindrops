@@ -1,10 +1,12 @@
 class Catcher {
   PVector loc;
   int d;
+  boolean gameOver;
 
   Catcher() {
     loc = new PVector (mouseX, height - 100);
     d = 100;
+    gameOver = false;
   }
 
   //function to display the catcher
@@ -16,33 +18,43 @@ class Catcher {
       d = 75;
     }
     //if the score reaches 150+, the catcher gets even smaller
-    if (score >= 50) {
+    if (score >= 35) {
       d = 50;
     }
   }
 
-    //this function updates the catcher so that it can follow the mouse's x motion
-    void update() {
-      loc.set(mouseX, height - 100);
-      //if the score reaches the stated score, the catcher's new size is updated
-      if (score >= 25) {
-        loc.set(mouseX, height - 75);
-      }
-      if (score >= 50) {
-        loc.set(mouseX, height - 50);
-      }
+  //this function updates the catcher so that it can follow the mouse's x motion
+  void update() {
+    loc.set(mouseX, height - 100);
+    //if the score reaches the stated score, the catcher's new size is updated
+    if (score >= 25) {
+      loc.set(mouseX, height - 75);
     }
-
-    //boolean used to recognize the intersection of a raindrop and the catcher
-    boolean catchDrop(Raindrops drop) {
-      //if the two intersect...
-      if (loc.dist(drop.loc) < d/2 + drop.d/2) {
-        return true;
-      }
-      //if they do not intersect...
-      else {
-        return false;
-      }
+    if (score >= 50) {
+      loc.set(mouseX, height - 50);
     }
   }
+
+  //boolean used to recognize the intersection of a raindrop and the catcher
+  boolean catchDrop(Raindrops drop) {
+    //if the two intersect...
+    if (loc.dist(drop.loc) < d/2 + drop.d/2) {
+      return true;
+    }
+    //if they do not intersect...
+    else {
+      return false;
+    }
+  }
+  boolean gameOver(Raindrops drop){
+    //if the drop intersects the ground...
+    if (height - drop.loc.y < d/2) {
+      return true;
+    }
+    //if they do not intersect...
+    else{
+      return false;
+    }
+  }
+}
 

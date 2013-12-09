@@ -4,10 +4,13 @@ Raindrops [] rainFall = new Raindrops[10];
 PImage background;
 Catcher c1;
 int score;
-boolean start;
 int oldTime = 0;
-int interval = 3000;
+boolean start;
+int interval = 2000;
 int index = 1;
+Timer t1;
+PImage startScreen;
+PImage victoryScreen;
 
 void setup() {
   size(700, 700);
@@ -21,6 +24,9 @@ void setup() {
   c1 = new Catcher();
   //boolean
   start = false;
+  t1 = new Timer();
+  startScreen = loadImage("cloudy.jpg");
+  victoryScreen = loadImage("fireworks.jpg");
 }
 
 void draw() {
@@ -68,32 +74,36 @@ void draw() {
       //this code runs if the drop is caught by the catcher (the two intersect)
       //the score increases and the drop is reset
       if (c1.catchDrop(rainFall[i]) == true) {
-        rainFall[i].reset();
+        rainFall[i].goAway();
         score++;
-        interval -= 25;
+        interval -= 500;
       }
-    }
-    //the catcher is displayed and updated as it moves
-    c1.display();
-    c1.update();
-    if(millis() - oldTime > interval){
-      if(index < rainFall.length){
-        index++;
-        oldTime = millis();
+
+      if (c1.gameOver(rainFall[i]) == true) {
+        background(0);
       }
+
+
+      //the catcher is displayed and updated as it moves
+      c1.display();
+      c1.update();
+      t1.Time();
     }
   }
-  
-  //if you reach 100 YOU WIN!!!! :)
-//  else if(score == 10){
-//    textSize(75);
-//    textAlign(CENTER);
-//    text("You Win!",250,250);
-//  }
-    
+
+
+  //if you reach 75 YOU WIN!!!! :)
+  else if (score == 75) {
+    image(victoryScreen, 0, 0, width, height);
+    textSize(75);
+    textAlign(CENTER);
+    text("You Win!", 250, 250);
+  }
+
   //this code runs if boolean start is false
   //creates start button
   else {
+    image(startScreen, 0, 0, width, height);
     fill(255, 0, 0);
     rectMode(CORNERS);
     rect(250, 300, 450, 400);
@@ -103,7 +113,10 @@ void draw() {
     fill(245, 234, 17);
     text("Start", 265, 375);
   }  
+  //checking to see if the interval is decreasing
+  println(interval);
 }
+
 
 //if the start button is pressed, the true boolean code is run and the game begins
 void mousePressed() {
@@ -111,4 +124,12 @@ void mousePressed() {
     start = true;
   }
 }
+
+
+
+//wierd intervals that drop rain
+
+
+
+//game over screen not working
 
