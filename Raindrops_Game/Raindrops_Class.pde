@@ -34,15 +34,25 @@ class Raindrops {
     println(yAcc);
   }
 
-    //resetting the location of the raindrop
-    void reset() {
-      loc.set(random(width), 0);
-    }
-
-    void goAway() {
-      loc.set(height*2, 0);
-      vel.set(0, 0);
-    }
+  //resetting the location of the raindrop
+  void reset() {
+    loc.set(random(width), 0);
   }
 
+  void goAway() {
+    loc.set(height*2, 0);
+    vel.set(0, 0);
+  }
+
+  boolean gameOver(Raindrops drop) {
+    //if the drop intersects the ground...
+    if (height - drop.loc.y <= d/2) {
+      return true;
+    }
+    //if they do not intersect...
+    else {
+      return false;
+    }
+  }
+}
 

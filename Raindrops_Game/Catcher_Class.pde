@@ -46,15 +46,4 @@ class Catcher {
       return false;
     }
   }
-  boolean gameOver(Raindrops drop){
-    //if the drop intersects the ground...
-    if (height - drop.loc.y < d/2) {
-      return true;
-    }
-    //if they do not intersect...
-    else{
-      return false;
-    }
-  }
 }
-

@@ -79,8 +79,11 @@ void draw() {
         interval -= 500;
       }
 
-      if (c1.gameOver(rainFall[i]) == true) {
+      if (r.gameOver(rainFall[i]) == true) {
         background(0);
+        textSize(100);
+        textAlign(CENTER);
+        text("GAME OVER",350,250);
       }
 
 
@@ -127,7 +130,7 @@ void mousePressed() {
 
 
 
-//wierd intervals that drop rain
+
 
 
 
