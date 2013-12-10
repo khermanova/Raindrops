@@ -8,7 +8,7 @@ class Timer {
   void Time() {
     if (currentTime - oldTime > interval) {
       if (index < rainFall.length) {
-        index += 1;
+        index ++;
         oldTime = currentTime;
       }
     }
