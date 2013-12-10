@@ -134,5 +134,6 @@ void mousePressed() {
 
 
 
-//game over screen not working
+//time function = only one drop
+//win screen
 
