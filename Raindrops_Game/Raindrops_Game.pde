@@ -1,16 +1,17 @@
 //variables, classes, and arrays
 Raindrops r;
-Raindrops [] rainFall = new Raindrops[10];
+Raindrops [] rainFall = new Raindrops[300];
 PImage background;
 Catcher c1;
 int score;
 int oldTime = 0;
 boolean start;
-int interval = 2000;
+int interval = 3000;
 int index = 1;
 Timer t1;
 PImage startScreen;
 PImage victoryScreen;
+boolean end;
 
 void setup() {
   size(700, 700);
@@ -27,6 +28,7 @@ void setup() {
   t1 = new Timer();
   startScreen = loadImage("cloudy.jpg");
   victoryScreen = loadImage("fireworks.jpg");
+  end = false;
 }
 
 void draw() {
@@ -76,31 +78,36 @@ void draw() {
       if (c1.catchDrop(rainFall[i]) == true) {
         rainFall[i].goAway();
         score++;
-        interval -= 500;
+        interval -= 20;
       }
-
+      
+//if a raindrop hits the ground game over is true and this code runs
       if (r.gameOver(rainFall[i]) == true) {
         background(0);
         textSize(100);
         textAlign(CENTER);
-        text("GAME OVER",350,250);
+        text("GAME OVER", 350, 250);
       }
-
-
-      //the catcher is displayed and updated as it moves
-      c1.display();
-      c1.update();
-      t1.Time();
     }
-  }
+    
+    //if you reach 75 it is the end of the game
+    if (score == 75) {
+      end = true;
+    }
 
+//if it is the end of the game YOU WIN!!! :)
+    if (end == true) {
+      image(victoryScreen, 0, 0, width, height);
+      textSize(130);
+      textAlign(CENTER);
+      fill(3, 255, 59);
+      text("You Win!", 300, height/2);
+    }
 
-  //if you reach 75 YOU WIN!!!! :)
-  else if (score == 75) {
-    image(victoryScreen, 0, 0, width, height);
-    textSize(75);
-    textAlign(CENTER);
-    text("You Win!", 250, 250);
+    //the catcher is displayed and updated as it moves
+    c1.display();
+    c1.update();
+    t1.Time();
   }
 
   //this code runs if boolean start is false
@@ -134,5 +141,4 @@ void mousePressed() {
 
 
 
-//game over screen not working
 

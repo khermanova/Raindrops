@@ -44,6 +44,7 @@ class Raindrops {
     vel.set(0, 0);
   }
 
+//boolean to control what ends the game
   boolean gameOver(Raindrops drop) {
     //if the drop intersects the ground...
     if (height - drop.loc.y <= d/2) {
