@@ -1,4 +1,4 @@
-void SlideShow{
+class SlideShow{
   PImage city;
   PImage rainyStreet;
   PVector loc;
