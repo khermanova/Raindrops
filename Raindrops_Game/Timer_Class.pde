@@ -10,6 +10,7 @@ class Timer {
       if (index < rainFall.length) {
         index += 1;
         oldTime = currentTime;
+        println("HELLO!");
       }
     }
     if (interval <= 500) {

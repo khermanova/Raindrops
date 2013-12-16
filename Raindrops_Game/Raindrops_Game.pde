@@ -30,13 +30,15 @@ void setup() {
   startScreen = loadImage("cloudy.jpg");
   victoryScreen = loadImage("fireworks.jpg");
   play = new SlideShow();
+  play.slideSwitch();
 }
 
 void draw() {
-  //loading image as background
-  play.slideSwitch();
   //boolean with true value runs the game
   if (start == true) {
+    background(0);
+    //loading image as background
+    //    play.slideSwitch();
     //this code to determines the size of the score rectangle
     //2 digit score creates medium rectangle to fit score value
     if (score >= 10 && score < 100) {
@@ -86,7 +88,7 @@ void draw() {
         background(0);
         textSize(100);
         textAlign(CENTER);
-        text("GAME OVER",350,250);
+        text("GAME OVER", 350, 250);
       }
 
 
@@ -134,9 +136,4 @@ void mousePressed() {
 
 
 
-
-
-
-//time function = only one drop
-//win screen
 
