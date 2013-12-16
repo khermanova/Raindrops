@@ -11,6 +11,8 @@ int index = 1;
 Timer t1;
 PImage startScreen;
 PImage victoryScreen;
+SlideShow play;
+int slide = 1;
 
 void setup() {
   size(700, 700);
@@ -27,12 +29,12 @@ void setup() {
   t1 = new Timer();
   startScreen = loadImage("cloudy.jpg");
   victoryScreen = loadImage("fireworks.jpg");
+  play = new SlideShow();
 }
 
 void draw() {
   //loading image as background
-  imageMode(CORNERS);
-  image(background, 0, 0, width, height);
+  play.slideSwitch();
   //boolean with true value runs the game
   if (start == true) {
     //this code to determines the size of the score rectangle
@@ -77,6 +79,7 @@ void draw() {
         rainFall[i].goAway();
         score++;
         interval -= 500;
+        slide ++;
       }
 
       if (r.gameOver(rainFall[i]) == true) {
