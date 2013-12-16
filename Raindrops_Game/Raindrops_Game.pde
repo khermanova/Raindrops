@@ -32,11 +32,11 @@ void setup() {
 }
 
 void draw() {
-  //loading image as background
-  imageMode(CORNERS);
-  image(background, 0, 0, width, height);
   //boolean with true value runs the game
   if (start == true) {
+    //loading image as background
+    imageMode(CORNERS);
+    image(background, 0, 0, width, height);
     //this code to determines the size of the score rectangle
     //2 digit score creates medium rectangle to fit score value
     if (score >= 10 && score < 100) {
