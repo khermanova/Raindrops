@@ -12,6 +12,11 @@ Timer t1;
 PImage startScreen;
 PImage victoryScreen;
 boolean end;
+<<<<<<< HEAD
+=======
+SlideShow play;
+int slide = 1;
+>>>>>>> origin/Background-Slide-Show-
 
 void setup() {
   size(700, 700);
@@ -29,14 +34,22 @@ void setup() {
   startScreen = loadImage("cloudy.jpg");
   victoryScreen = loadImage("fireworks.jpg");
   end = false;
+<<<<<<< HEAD
+=======
+  play = new SlideShow();
+>>>>>>> origin/Background-Slide-Show-
 }
 
 void draw() {
   //boolean with true value runs the game
   if (start == true) {
     //loading image as background
+<<<<<<< HEAD
     imageMode(CORNERS);
     image(background, 0, 0, width, height);
+=======
+    play.slideSwitch();
+>>>>>>> origin/Background-Slide-Show-
     //this code to determines the size of the score rectangle
     //2 digit score creates medium rectangle to fit score value
     if (score >= 10 && score < 100) {
@@ -79,6 +92,10 @@ void draw() {
         rainFall[i].goAway();
         score++;
         interval -= 20;
+<<<<<<< HEAD
+=======
+        slide++;
+>>>>>>> origin/Background-Slide-Show-
       }
       
 //if a raindrop hits the ground game over is true and this code runs
