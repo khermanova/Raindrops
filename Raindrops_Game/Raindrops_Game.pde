@@ -12,7 +12,6 @@ Timer t1;
 PImage startScreen;
 PImage victoryScreen;
 boolean end;
-
 SlideShow play;
 int slide = 1;
 

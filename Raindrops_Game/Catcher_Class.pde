@@ -1,9 +1,5 @@
 class Catcher {
   PVector loc;
-
-
-
-
   PVector arcLoc;
   int d;
   boolean gameOver;
