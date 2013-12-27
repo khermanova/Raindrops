@@ -31,7 +31,7 @@ class Raindrops {
       yAcc += .5;
     }
     //checking value of yAcc
-    println(yAcc);
+    //println(yAcc);
   }
 
   //resetting the location of the raindrop
@@ -44,15 +44,12 @@ class Raindrops {
     vel.set(0, 0);
   }
 
-//boolean to control what ends the game
-  boolean gameOver(Raindrops drop) {
-    //if the drop intersects the ground...
-    if (height - drop.loc.y <= d/2) {
-      return true;
+  void miss(Raindrops drop) {
+    if (height == drop.loc.y) {
+      lossLife = true;
     }
-    //if they do not intersect...
     else {
-      return false;
+      lossLife = false;
     }
   }
 }
