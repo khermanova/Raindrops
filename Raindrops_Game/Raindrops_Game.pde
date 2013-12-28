@@ -1,6 +1,6 @@
 //variables, classes, booleans, and arrays
 Raindrops r;
-Raindrops [] rainFall = new Raindrops[300];
+Raindrops [] rainFall = new Raindrops[1000];
 PImage background;
 Catcher c1;
 int score;
@@ -20,6 +20,7 @@ PImage heart3;
 boolean gameOver;
 int lives;
 boolean lossLife;
+PImage sad;
 
 void setup() {
   size(700, 700);
@@ -50,6 +51,7 @@ void setup() {
   //player given three lives- one bonus
   lives = 4;
   lossLife = false;
+  sad = loadImage("Sad Face.png");
 }
 
 void draw() {
@@ -60,6 +62,13 @@ void draw() {
     image(background, 0, 0, width, height);
     //changes the background
     play.slideSwitch();
+
+    //the catcher is displayed and updated as it moves
+    //the timer is updated as the game goes on
+    c1.display();
+    c1.update();
+    t1.Time();
+
     //displays Lives box with text "Lives" in it
     fill(37, 56, 113);
     stroke(255, 158, 0);
@@ -100,27 +109,27 @@ void draw() {
       rainFall[i].fall();
       rainFall[i].loseLife();
       if (lives == 4) {
-      //displays 3 hearts signifying lives
-      imageMode(CENTER);
-      image(heart1, 550, 45);
-      image(heart2, 610, 45);
-      image(heart3, 670, 45);
-    }
-    if (lives == 3) {
-      //displays two hearts
-      imageMode(CENTER);
-      image(heart1, 550, 45);
-      image(heart2, 610, 45);
-    }
-    if (lives == 2) {
-      //displays one heart
-      imageMode(CENTER);
-      image(heart1, 550, 45);
-    }
-    if (lives == 0) {
-      //no lives left so game over
-      gameOver = true;
-    }
+        //displays 3 hearts signifying lives
+        imageMode(CENTER);
+        image(heart1, 550, 45);
+        image(heart2, 610, 45);
+        image(heart3, 670, 45);
+      }
+      if (lives == 3) {
+        //displays two hearts
+        imageMode(CENTER);
+        image(heart1, 550, 45);
+        image(heart2, 610, 45);
+      }
+      if (lives == 2) {
+        //displays one heart
+        imageMode(CENTER);
+        image(heart1, 550, 45);
+      }
+      if (lives == 0) {
+        //no lives left so game over
+        gameOver = true;
+      }
 
       //this code runs if the drop is caught by the catcher (the two intersect)
       //the score increases and the drop disappears
@@ -138,15 +147,15 @@ void draw() {
       background(0);
       textSize(100);
       textAlign(CENTER);
-      text("GAME OVER", 350, 250);
+      text("GAME OVER", 335, 150);
+      image(sad, 500, 500);
     }
-
 
     //if you reach 75 before losing it is the end of the game and YOU WIN !!! :)
     if (score == 75) {
       end = true;
     }
-    
+
     //when you win the victory screen appears
     if (end == true) {
       image(victoryScreen, 0, 0, width, height);
@@ -155,12 +164,6 @@ void draw() {
       fill(3, 255, 59);
       text("You Win!", 300, height/2);
     }
-
-    //the catcher is displayed and updated as it moves
-    //the timer is updated as the game goes on
-    c1.display();
-    c1.update();
-    t1.Time();
   }
 
   //when the game has not started, the start screen is created (start = false)
@@ -171,6 +174,7 @@ void draw() {
     fill(255, 0, 0);
     rectMode(CORNERS);
     rect(250, 300, 450, 400);
+    textAlign(LEFT);
     textSize(75);
     stroke(245, 234, 17);
     strokeWeight(10);
@@ -182,6 +186,8 @@ void draw() {
   //checking to see that the lives decrease by one as raindrops hit the ground
   println(lives);
 }
+
+
 
 
 //if the start button is pressed, the start boolean becomes true and the game begins

@@ -22,7 +22,7 @@ class Raindrops {
       d = 25;
     }
     //if the score reaches 50+, the raindrop shrinks again
-    if (score >= 50){
+    if (score >= 50) {
       d = 20;
     }
   }
@@ -40,9 +40,9 @@ class Raindrops {
   }
 
   //resetting the location of the raindrop
-//  void reset() {
-//    loc.set(random(width), 0);
-//  }
+    void reset() {
+    loc.set(random(width), 0);
+  }
 
   //function to make the raindrop disappear once it goes off the screen or is caught
   void goAway() {
