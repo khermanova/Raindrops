@@ -180,6 +180,9 @@ void draw() {
     strokeWeight(10);
     fill(245, 234, 17);
     text("Start", 265, 375);
+    textSize(25);
+    strokeWeight(5);
+    text("Press key *r* to restart the game at any time", 75, 550);
   }  
   //checking to see if the interval is decreasing
   //println(interval);
@@ -194,6 +197,15 @@ void draw() {
 void mousePressed() {
   if (mouseX > 250 && mouseX < 450 && mouseY > 300 && mouseY < 400) {
     start = true;
+  }
+}
+
+//
+void keyPressed(){
+  if (key == 'r'){
+    start = false;
+    score = 0;
+    lives = 4;
   }
 }
 
