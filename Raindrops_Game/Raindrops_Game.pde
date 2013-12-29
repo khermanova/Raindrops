@@ -21,6 +21,8 @@ boolean gameOver;
 int lives;
 boolean lossLife;
 PImage sad;
+boolean level1, level2, level3, level4, level5, level6;
+PVector textLoc;
 
 void setup() {
   size(700, 700);
@@ -52,6 +54,7 @@ void setup() {
   lives = 4;
   lossLife = false;
   sad = loadImage("Sad Face.png");
+  textLoc = new PVector(275, 75);
 }
 
 void draw() {
@@ -60,8 +63,58 @@ void draw() {
     //loading image as background
     imageMode(CORNERS);
     image(background, 0, 0, width, height);
+
     //changes the background
     play.slideSwitch();
+    
+    if (score < 10) {
+      fill(255, 158, 0);
+      strokeWeight(10);
+      textSize(70);
+      textAlign(CENTER);
+      text("Level 1", textLoc.x, textLoc.y);
+    }
+    if (score <= 20 && score > 10) {
+      fill(255, 158, 0);
+      strokeWeight(10);
+      textSize(70);
+      textAlign(CENTER);
+      text("Level 2", textLoc.x, textLoc.y);
+    }
+    if (score <= 30 && score > 20) {
+      fill(255, 158, 0);
+      strokeWeight(10);
+      textSize(70);
+      textAlign(CENTER);
+      text("Level 3", textLoc.x, textLoc.y);
+    }
+    if (score <= 45 && score > 30) {
+      fill(255, 158, 0);
+      strokeWeight(10);
+      textSize(70);
+      textAlign(CENTER);
+      text("Level 4", textLoc.x, textLoc.y);
+    }
+    if (score <= 60 && score > 45) {
+      fill(255, 158, 0);
+      strokeWeight(10);
+      textSize(70);
+      textAlign(CENTER);
+      text("Level 5", textLoc.x, textLoc.y);
+    }
+    //if you reach 75 before losing it is the end of the game and YOU WIN !!! :)
+    if (score == 75) {
+      end = true;
+    }
+
+    //when you win the victory screen appears
+    if (end == true) {
+      image(victoryScreen, 0, 0, width, height);
+      textSize(130);
+      textAlign(CENTER);
+      fill(3, 255, 59);
+      text("You Win!", 300, height/2);
+    }
 
     //the catcher is displayed and updated as it moves
     //the timer is updated as the game goes on
@@ -76,6 +129,7 @@ void draw() {
     rectMode(CORNERS);
     rect(425, 25, 505, 65);
     fill(255, 158, 0);
+    textAlign(LEFT);
     textSize(30);
     text("Lives", 430, 55);
 
@@ -97,10 +151,12 @@ void draw() {
       rect(30, 25, 100, 90);
     }
     //creates score text in score box
+    textAlign(LEFT);
     fill(255, 158, 0);
     textSize(20);
     text("Score", 35, 45);
     //displays current score in score box
+    textAlign(LEFT);
     textSize(40);
     text(score, 50, 80);
     //rainFall array that creats the rain in the game
@@ -138,7 +194,6 @@ void draw() {
         rainFall[i].goAway();
         score++;
         interval -= 20;
-        slide++;
       }
     }
 
@@ -149,20 +204,6 @@ void draw() {
       textAlign(CENTER);
       text("GAME OVER", 335, 150);
       image(sad, 500, 500);
-    }
-
-    //if you reach 75 before losing it is the end of the game and YOU WIN !!! :)
-    if (score == 75) {
-      end = true;
-    }
-
-    //when you win the victory screen appears
-    if (end == true) {
-      image(victoryScreen, 0, 0, width, height);
-      textSize(130);
-      textAlign(CENTER);
-      fill(3, 255, 59);
-      text("You Win!", 300, height/2);
     }
   }
 
@@ -187,9 +228,9 @@ void draw() {
   //checking to see if the interval is decreasing
   //println(interval);
   //checking to see that the lives decrease by one as raindrops hit the ground
-  println(gameOver);
-  println(lives);
-  println(start);
+  //  println(gameOver);
+  //  println(lives);
+  //  println(start);
 }
 
 
@@ -203,8 +244,8 @@ void mousePressed() {
 }
 
 //
-void keyPressed(){
-  if (key == 'r'){
+void keyPressed() {
+  if (key == 'r') {
     start = false;
     score = 0;
     lives = 4;

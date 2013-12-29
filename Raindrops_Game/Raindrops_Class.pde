@@ -40,7 +40,7 @@ class Raindrops {
   }
 
   //resetting the location of the raindrop
-    void reset() {
+  void reset() {
     loc.set(random(width), 0);
   }
 

@@ -37,6 +37,7 @@ class Catcher {
     imageMode(CENTER); 
     image(cImage, loc.x, loc.y);
     //draws the shapes filling the umbrella that catch the raindrops transparent
+    noStroke();
     fill(0, 255, 0, 0);
     arc(arcLoc.x, arcLoc.y, 175, 125, 0, PI, CHORD);
     ellipse(c1.x, c1.y, widthL, heightL);
@@ -47,15 +48,6 @@ class Catcher {
 
   //this function updates the catcher and the shapes filling it so that they can follow the mouse's x motion
   void update() {
-    loc.set(mouseX, height - 100);
-    //if the score reaches the stated score, the catcher's new size is updated
-    if (score >= 25) {
-      loc.set(mouseX, height - 75);
-    }
-    if (score >= 50) {
-      loc.set(mouseX, height - 50);
-    }
-
     loc.set(mouseX, height - 115);
     arcLoc.set(loc.x, loc.y-25);
     c1.set(arcLoc.x - 35, arcLoc.y + 25);
