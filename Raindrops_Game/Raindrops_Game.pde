@@ -187,7 +187,9 @@ void draw() {
   //checking to see if the interval is decreasing
   //println(interval);
   //checking to see that the lives decrease by one as raindrops hit the ground
+  println(gameOver);
   println(lives);
+  println(start);
 }
 
 
@@ -206,6 +208,7 @@ void keyPressed(){
     start = false;
     score = 0;
     lives = 4;
+    gameOver = false;
   }
 }
 
