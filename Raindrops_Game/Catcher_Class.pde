@@ -33,20 +33,7 @@ class Catcher {
 
   //function to display the catcher image
   void display() {
-<<<<<<< HEAD
-    fill(222, 16, 16);
-    ellipse(loc.x, loc.y, d, d);
-    //if the score reaches 75+, the catcher gets smaller
-    if (score >= 25) {
-      d = 75;
-    }
-    //if the score reaches 150+, the catcher gets even smaller
-    if (score >= 35) {
-      d = 50;
-    }
-
-=======
->>>>>>> Lives
+    
     imageMode(CENTER); 
     image(cImage, loc.x, loc.y);
     //draws the shapes filling the umbrella that catch the raindrops transparent
@@ -61,7 +48,6 @@ class Catcher {
   //this function updates the catcher and the shapes filling it so that they can follow the mouse's x motion
   void update() {
     loc.set(mouseX, height - 100);
-<<<<<<< HEAD
     //if the score reaches the stated score, the catcher's new size is updated
     if (score >= 25) {
       loc.set(mouseX, height - 75);
@@ -70,8 +56,6 @@ class Catcher {
       loc.set(mouseX, height - 50);
     }
 
-=======
->>>>>>> Lives
     loc.set(mouseX, height - 115);
     arcLoc.set(loc.x, loc.y-25);
     c1.set(arcLoc.x - 35, arcLoc.y + 25);
@@ -83,11 +67,6 @@ class Catcher {
   //boolean used to recognize the intersection of a raindrop and the catcher
   boolean catchDrop(Raindrops drop) {
     //if the two intersect...
-<<<<<<< HEAD
-
-
-=======
->>>>>>> Lives
     if (arcLoc.dist(drop.loc) < drop.d/2 || c1.dist(drop.loc) < heightL/2 + drop.d/2 || c2.dist(drop.loc) < heightS/2 + drop.d/2 || c3.dist(drop.loc) < heightL/2 + drop.d/2 || c4.dist(drop.loc) < heightS/2 + drop.d/2) {
       return true;
     }
@@ -98,8 +77,4 @@ class Catcher {
   }
 }
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> Lives
