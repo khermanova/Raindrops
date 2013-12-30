@@ -7,7 +7,7 @@ int score;
 int oldTime = 0;
 boolean start;
 int interval = 3000;
-int index = 1;
+int index = 0;
 Timer t1;
 PImage startScreen;
 PImage victoryScreen;
@@ -21,8 +21,9 @@ boolean gameOver;
 int lives;
 boolean lossLife;
 PImage sad;
-boolean level1, level2, level3, level4, level5, level6;
 PVector textLoc;
+Level progress;
+boolean game;
 
 void setup() {
   size(700, 700);
@@ -59,175 +60,128 @@ void setup() {
   sad = loadImage("Sad Face.png");
   //PVector for level text location
   textLoc = new PVector(250, 75);
+  progress = new Level();
+  //this boolean controls the parts of the game including display/use of catcher, score, lives, raindrops
+  game = true;
 }
 
 void draw() {
   //when the start button is pressed this boolean is given a true value, which runs the game
   if (start == true) {
-    //loading image as background
-    imageMode(CORNERS);
-    image(background, 0, 0, width, height);
+    if (game == true) {
+      //loading image as background
+      imageMode(CORNERS);
+      image(background, 0, 0, width, height);
 
-    //function in SlideShow Class that changes the background for each level with the variable *slide* 
-    play.slideSwitch();
+      //function in SlideShow Class that changes the background for each level with the variable *slide* 
+      play.slideSwitch();
 
-    //level 1 from scores 0-10
-    if (score <= 10) {
-      slide = 1;
-      fill(225);
-      strokeWeight(10);
-      textSize(70);
-      textAlign(CENTER);
-      text("Level 1", textLoc.x, textLoc.y);
-    }
+      progress.levelChange();
+      progress.win();
 
-    //level 2 from scores 11-20
-    if (score > 10 && score <= 20) {
-      slide = 2;
-      fill(255);
-      strokeWeight(10);
-      textSize(70);
-      textAlign(CENTER);
-      text("Level 2", textLoc.x, textLoc.y);
-      interval = 2500;
-    }
+      //the catcher is displayed and updated as it moves
+      //the timer is updated as the game goes on
+      c1.display();
+      c1.update();
+      t1.Time();
 
-    //level 3 from scores 21-35
-    if (score <= 35 && score > 20) {
-      slide = 3;
-      fill(255, 230, 3);
-      strokeWeight(10);
-      textSize(70);
-      textAlign(CENTER);
-      text("Level 3", textLoc.x, textLoc.y);
-      interval = 2000;
-    }
-
-    //level 4 from scores 36-50
-    if (score <= 50 && score > 35) {
-      slide = 4;
-      fill(255);
-      strokeWeight(10);
-      textSize(70);
-      textAlign(CENTER);
-      text("Level 4", textLoc.x, textLoc.y);
-      interval = 1000;
-    }
-
-    //level 5 from scores 51-65
-    if (score <= 65 && score > 50) {
-      slide = 5;
-      fill(255);
-      strokeWeight(10);
-      textSize(70);
-      textAlign(CENTER);
-      text("Level 5", textLoc.x, textLoc.y);
-      interval = 500;
-    }
-
-    //if you reach 65 before losing it is the end of the game and YOU WIN !!! :)
-    if (score == 65) {
-      end = true;
-    }
-
-    //the catcher is displayed and updated as it moves
-    //the timer is updated as the game goes on
-    c1.display();
-    c1.update();
-    t1.Time();
-
-    //displays Lives box with text "Lives" and its value in it
-    fill(37, 56, 113);
-    stroke(255, 158, 0);
-    strokeWeight(5);
-    rectMode(CORNERS);
-    rect(380, 25, 505, 65);
-    fill(255, 158, 0);
-    textAlign(LEFT);
-    textSize(30);
-    text("Lives:" + lives, 390, 55);
-
-    //this code to determines the size of the score rectangle
-    //2 digit score creates medium rectangle to fit score value
-    if (score >= 10) {
+      //displays Lives box with text "Lives" and its value in it
       fill(37, 56, 113);
       stroke(255, 158, 0);
       strokeWeight(5);
       rectMode(CORNERS);
-      rect(25, 25, 115, 90);
-    }
-    //single digit score creates small rectangle for score
-    else {
-      fill(37, 56, 113);
-      stroke(255, 158, 0);
-      strokeWeight(5);
-      rectMode(CORNERS);
-      rect(25, 25, 95, 90);
-    }
-    //creates score text in score box
-    textAlign(LEFT);
-    fill(255, 158, 0);
-    textSize(20);
-    text("Score", 35, 45);
-    //displays current score in score box
-    textAlign(LEFT);
-    textSize(40);
-    text(score, 50, 80);
-    //rainFall array that creats the rain in the game
-    for (int i = 0; i < index; i++) {
-      //each of the raindrops are displayed, fall down the screen, and if one is dropped, a life is lost
-      rainFall[i].show();
-      rainFall[i].fall();
-      rainFall[i].loseLife();
-      if (lives == 3) {
-        //displays 3 hearts signifying lives
-        imageMode(CENTER);
-        image(heart1, 550, 45);
-        image(heart2, 610, 45);
-        image(heart3, 670, 45);
-      }
-      if (lives == 2) {
-        //displays two hearts
-        imageMode(CENTER);
-        image(heart1, 550, 45);
-        image(heart2, 610, 45);
-      }
-      if (lives == 1) {
-        //displays one heart
-        imageMode(CENTER);
-        image(heart1, 550, 45);
-      }
-      if (lives == 0) {
-        //no lives left so game over, no hearts are displayed
-        gameOver = true;
-      }
+      rect(380, 25, 505, 65);
+      fill(255, 158, 0);
+      textAlign(LEFT);
+      textSize(30);
+      text("Lives:" + lives, 390, 55);
 
-      //this code runs if the drop is caught by the catcher (the two intersect)
-      //the score increases and the drop disappears
-      if (c1.catchDrop(rainFall[i]) == true) {
-        rainFall[i].goAway();
-        score++;
+      //this code to determines the size of the score rectangle
+      //2 digit score creates medium rectangle to fit score value
+      if (score >= 10) {
+        fill(37, 56, 113);
+        stroke(255, 158, 0);
+        strokeWeight(5);
+        rectMode(CORNERS);
+        rect(25, 25, 115, 90);
+      }
+      //single digit score creates small rectangle for score
+      else {
+        fill(37, 56, 113);
+        stroke(255, 158, 0);
+        strokeWeight(5);
+        rectMode(CORNERS);
+        rect(25, 25, 95, 90);
+      }
+      //creates score text in score box
+      textAlign(LEFT);
+      fill(255, 158, 0);
+      textSize(20);
+      text("Score", 35, 45);
+      //displays current score in score box
+      textAlign(LEFT);
+      textSize(40);
+      text(score, 50, 80);
+      //rainFall array that creats the rain in the game
+      for (int i = 0; i < index; i++) {
+        //each of the raindrops are displayed, fall down the screen, and if one is dropped, a life is lost
+        rainFall[i].show();
+        rainFall[i].fall();
+        rainFall[i].loseLife();
+        if (lives == 3) {
+          //displays 3 hearts signifying lives
+          imageMode(CENTER);
+          image(heart1, 550, 45);
+          image(heart2, 610, 45);
+          image(heart3, 670, 45);
+        }
+        if (lives == 2) {
+          //displays two hearts
+          imageMode(CENTER);
+          image(heart1, 550, 45);
+          image(heart2, 610, 45);
+        }
+        if (lives == 1) {
+          //displays one heart
+          imageMode(CENTER);
+          image(heart1, 550, 45);
+        }
+        if (lives == 0) {
+          //no lives left so game over, no hearts are displayed
+          gameOver = true;
+        }
+
+        //this code runs if the drop is caught by the catcher (the two intersect)
+        //the score increases and the drop disappears
+        if (c1.catchDrop(rainFall[i]) == true) {
+          rainFall[i].goAway();
+          score++;
+        }
       }
     }
-
+    
+    //this code is run when game is false; this is so the raindrops,catcher, score, and lives don't appear on the game over and victory screens
     //if a three raindrops hit the ground, it's game over and the game over screen appears
     if (gameOver == true) {
+      game = false;
       background(0);
       textSize(100);
       textAlign(CENTER);
       text("GAME OVER", 335, 150);
       image(sad, 500, 500);
     }
-
     //when you win the victory screen appears
     if (end == true) {
       background(0);
       imageMode(CORNERS);
       image(victoryScreen, 0, 0, width, height);
+      fill(0);
+      rectMode(CENTER);
+      rect(width/2, height/2 - 50, 600, 200);
       textSize(130);
       textAlign(CENTER);
       fill(3, 255, 59);
-      text("You Win!", 300, height/2);
+      text("You Win!", width/2, height/2);
     }
   }
 
@@ -252,6 +206,7 @@ void draw() {
   //checking to see if the interval is decreasing
   //println(interval);
   //checking to see that the lives decrease by one as raindrops hit the ground
+  //checking value of start boolean
   //  println(gameOver);
   //  println(lives);
   //  println(start);
@@ -270,7 +225,7 @@ void keyPressed() {
   if (key == 'r') {
     start = false;
     score = 0;
-    lives = 4;
+    lives = 3;
     gameOver = false;
     end = false;
   }
