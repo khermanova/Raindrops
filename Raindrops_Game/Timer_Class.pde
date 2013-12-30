@@ -15,17 +15,6 @@ class Timer {
         oldTime = currentTime;
       }
     }
-
-    //the interval value is decreased and eventually set to a permanent 500ms or .5 sec at certain values
-    if (interval <= 2800) {
-      interval -= 50;
-      if (interval <= 2000) {
-        interval -= 100;
-      }
-      if (interval <= 1000) {
-        interval = 500;
-      }
-    }
   }
 }
 
