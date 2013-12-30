@@ -7,7 +7,7 @@ class Raindrops {
     //location of the raindrops
     loc = new PVector(random(width), 0);
     //speed of the raindrops
-    vel = new PVector(0, random(1.5, 3));
+    vel = new PVector(0, random(1.5, 4));
     acc = new PVector(0, yAcc);
     //size of the raindrops
     d = 30;

@@ -66,6 +66,15 @@ class Catcher {
       return false;
     }
   }
+  
+  boolean catchHeart(){
+    if(c2.dist(fallHeart) < 23 + heightS/2 || c1.dist(fallHeart) < 23 + heightL/2 || c3.dist(fallHeart) < 23 + heightL/2 || c4.dist(fallHeart) < 23 + heightS/2 || arcLoc.dist(fallHeart) < 23){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 }
 
 

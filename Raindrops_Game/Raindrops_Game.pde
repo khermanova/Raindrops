@@ -24,6 +24,9 @@ PImage sad;
 PVector textLoc;
 Level progress;
 boolean game;
+PImage extraLife;
+PVector fallHeart;
+PVector heartVel;
 
 void setup() {
   size(700, 700);
@@ -63,6 +66,9 @@ void setup() {
   progress = new Level();
   //this boolean controls the parts of the game including display/use of catcher, score, lives, raindrops
   game = true;
+  extraLife = loadImage("Falling Life.png");
+  fallHeart = new PVector(random(width), -50);
+  heartVel = new PVector(0, .5);
 }
 
 void draw() {
@@ -145,6 +151,8 @@ void draw() {
           //displays one heart
           imageMode(CENTER);
           image(heart1, 550, 45);
+          image(extraLife, fallHeart.x, fallHeart.y);
+          fallHeart.add(heartVel);
         }
         if (lives == 0) {
           //no lives left so game over, no hearts are displayed
@@ -158,8 +166,12 @@ void draw() {
           score++;
         }
       }
+      if (c1.catchHeart() == true) {
+        lives = 2;
+        fallHeart.set(random(width), -50);
+      }
     }
-    
+
     //this code is run when game is false; this is so the raindrops,catcher, score, and lives don't appear on the game over and victory screens
     //if a three raindrops hit the ground, it's game over and the game over screen appears
     if (gameOver == true) {
