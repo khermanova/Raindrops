@@ -1,15 +1,7 @@
 class Catcher {
   PVector loc;
-  PVector arcLoc;
+  
   PImage cImage;
-  PVector c1;
-  PVector c2;
-  PVector c3;
-  PVector c4;
-  int heightL;
-  int heightS;
-  int widthL; 
-  int widthS; 
 
 
   Catcher() {
@@ -19,16 +11,7 @@ class Catcher {
     cImage = loadImage("Catcher Image.png");
     //shapes used to fill the space that the raindrops can hit in the umbrella to be caught
     //an arc and four circles
-    arcLoc = new PVector (loc.x, loc.y-25);
-    c1 = new PVector (arcLoc.x - 35, arcLoc.y + 25);
-    c2 = new PVector (arcLoc.x - 70, arcLoc.y + 10);
-    c3 = new PVector (arcLoc.x + 35, arcLoc.y + 25);
-    c4 = new PVector (arcLoc.x + 70, arcLoc.y + 10);
-    //sizes of the circles filling the umbrella
-    heightL = 60;
-    heightS = 30;
-    widthL = 70;
-    widthS = 35;
+    
   }
 
   //function to display the catcher image

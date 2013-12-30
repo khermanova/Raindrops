@@ -5,7 +5,7 @@ class Level {
 
   void levelChange() {
     //level 1 from scores 0-10
-    if (score < 10) {
+    if (score <= 10) {
       slide = 1;
       fill(255, 10, 39);
       textSize(70);
@@ -21,6 +21,24 @@ class Level {
       textAlign(CENTER);
       text("Level 2", textLoc.x, textLoc.y);
       interval = 2000;
+      //displays colorDrop
+      noStroke();
+      fill(random(255), random(255), random(255));
+      ellipse(loc.x, loc.y, d, d);
+      triangle(loc.x - d/2, loc.y, loc.x, loc.y - d, loc.x + d/2, loc.y);
+      loc.add(vel);
+      //if the score reaches 20+, the raindrop shrinks
+      if (score > 10 && score <= 30) {
+        d = 25;
+      }
+      //if the score reaches 50+, the raindrop shrinks again
+      if (score <= 50 && score > 30) {
+        d = 15;
+      }
+      //if the colordrop is caught
+      if (arcLoc.dist(loc) < d/2 || c1.dist(loc) < heightL/2 + d/2 || c2.dist(loc) < heightS/2 + d/2 || c3.dist(loc) < heightL/2 + d/2 || c4.dist(loc) < heightS/2 + d/2) {
+        score += 5;
+      }
     }
 
     //level 3 from scores 20-30
@@ -41,6 +59,24 @@ class Level {
       textAlign(CENTER);
       text("Level 4", textLoc.x, textLoc.y);
       interval = 500;
+      //displays colorDrop
+      noStroke();
+      fill(random(255), random(255), random(255));
+      ellipse(loc.x, loc.y, d, d);
+      triangle(loc.x - d/2, loc.y, loc.x, loc.y - d, loc.x + d/2, loc.y);
+      loc.add(vel);
+      //if the score reaches 20+, the raindrop shrinks
+      if (score > 10 && score <= 30) {
+        d = 25;
+      }
+      //if the score reaches 50+, the raindrop shrinks again
+      if (score <= 50 && score > 30) {
+        d = 15;
+      }
+      //if the colordrop is caught
+      if (arcLoc.dist(loc) < d/2 || c1.dist(loc) < heightL/2 + d/2 || c2.dist(loc) < heightS/2 + d/2 || c3.dist(loc) < heightL/2 + d/2 || c4.dist(loc) < heightS/2 + d/2) {
+        score += 5;
+      }
     }
 
     //level 5 from scores 40-50
@@ -53,8 +89,8 @@ class Level {
       interval = 300;
     }
   }
-  
-  void win(){
+
+  void win() {
     //if you reach 50 before losing it is the end of the game and YOU WIN !!! :)
     if (score == 50) {
       end = true;
@@ -62,5 +98,4 @@ class Level {
     }
   }
 }
-
 

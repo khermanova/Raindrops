@@ -2,7 +2,7 @@
 Raindrops r;
 Raindrops [] rainFall = new Raindrops[300];
 PImage background;
-Catcher c1;
+Catcher catcher1;
 int score;
 int oldTime = 0;
 boolean start;
@@ -27,6 +27,18 @@ boolean game;
 PImage extraLife;
 PVector fallHeart;
 PVector heartVel;
+PVector loc, vel;
+float d;
+PVector arcLoc;
+PVector c1;
+PVector c2;
+PVector c3;
+PVector c4;
+int heightL;
+int heightS;
+int widthL; 
+int widthS; 
+
 
 void setup() {
   size(700, 700);
@@ -37,7 +49,7 @@ void setup() {
     rainFall[i] = new Raindrops();
   }
   //catcher
-  c1 = new Catcher();
+  catcher1 = new Catcher();
   //boolean for starting game
   start = false;
   //timer for timing rainfall
@@ -69,6 +81,23 @@ void setup() {
   extraLife = loadImage("Falling Life.png");
   fallHeart = new PVector(random(width), -50);
   heartVel = new PVector(0, .5);
+  //location of the raindrops
+  loc = new PVector(random(width), 0);
+  //speed of the raindrops
+  vel = new PVector(0, random(1.5, 4));
+  //size of the raindrops
+  d = 30;
+  //catcher objects
+  arcLoc = new PVector (loc.x, loc.y-25);
+  c1 = new PVector (arcLoc.x - 35, arcLoc.y + 25);
+  c2 = new PVector (arcLoc.x - 70, arcLoc.y + 10);
+  c3 = new PVector (arcLoc.x + 35, arcLoc.y + 25);
+  c4 = new PVector (arcLoc.x + 70, arcLoc.y + 10);
+  //sizes of the circles filling the umbrella
+  heightL = 60;
+  heightS = 30;
+  widthL = 70;
+  widthS = 35;
 }
 
 void draw() {
@@ -87,8 +116,8 @@ void draw() {
 
       //the catcher is displayed and updated as it moves
       //the timer is updated as the game goes on
-      c1.display();
-      c1.update();
+      catcher1.display();
+      catcher1.update();
       t1.Time();
 
       //displays Lives box with text "Lives" and its value in it
@@ -161,12 +190,12 @@ void draw() {
 
         //this code runs if the drop is caught by the catcher (the two intersect)
         //the score increases and the drop disappears
-        if (c1.catchDrop(rainFall[i]) == true) {
+        if (catcher1.catchDrop(rainFall[i]) == true) {
           rainFall[i].goAway();
           score++;
         }
       }
-      if (c1.catchHeart() == true) {
+      if (catcher1.catchHeart() == true) {
         lives = 2;
         fallHeart.set(random(width), -50);
       }
