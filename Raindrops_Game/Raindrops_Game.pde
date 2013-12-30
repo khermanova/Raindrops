@@ -54,7 +54,7 @@ void setup() {
   lives = 4;
   lossLife = false;
   sad = loadImage("Sad Face.png");
-  textLoc = new PVector(275, 75);
+  textLoc = new PVector(250, 75);
 }
 
 void draw() {
@@ -66,54 +66,45 @@ void draw() {
 
     //changes the background
     play.slideSwitch();
-    
-    if (score < 10) {
-      fill(255, 158, 0);
+
+    if (score <= 10) {
+      fill(255);
       strokeWeight(10);
       textSize(70);
       textAlign(CENTER);
       text("Level 1", textLoc.x, textLoc.y);
     }
-    if (score <= 20 && score > 10) {
-      fill(255, 158, 0);
+    if (score > 10 && score <= 20) {
+      fill(255);
       strokeWeight(10);
       textSize(70);
       textAlign(CENTER);
       text("Level 2", textLoc.x, textLoc.y);
     }
     if (score <= 30 && score > 20) {
-      fill(255, 158, 0);
+      fill(255);
       strokeWeight(10);
       textSize(70);
       textAlign(CENTER);
       text("Level 3", textLoc.x, textLoc.y);
     }
     if (score <= 45 && score > 30) {
-      fill(255, 158, 0);
+      fill(255);
       strokeWeight(10);
       textSize(70);
       textAlign(CENTER);
       text("Level 4", textLoc.x, textLoc.y);
     }
-    if (score <= 60 && score > 45) {
-      fill(255, 158, 0);
+    if (score <= 55 && score > 45) {
+      fill(255);
       strokeWeight(10);
       textSize(70);
       textAlign(CENTER);
       text("Level 5", textLoc.x, textLoc.y);
     }
-    //if you reach 75 before losing it is the end of the game and YOU WIN !!! :)
-    if (score == 75) {
+    //if you reach 65 before losing it is the end of the game and YOU WIN !!! :)
+    if (score == 65) {
       end = true;
-    }
-
-    //when you win the victory screen appears
-    if (end == true) {
-      image(victoryScreen, 0, 0, width, height);
-      textSize(130);
-      textAlign(CENTER);
-      fill(3, 255, 59);
-      text("You Win!", 300, height/2);
     }
 
     //the catcher is displayed and updated as it moves
@@ -127,11 +118,11 @@ void draw() {
     stroke(255, 158, 0);
     strokeWeight(5);
     rectMode(CORNERS);
-    rect(425, 25, 505, 65);
+    rect(380, 25, 505, 65);
     fill(255, 158, 0);
     textAlign(LEFT);
     textSize(30);
-    text("Lives", 430, 55);
+    text("Lives:" + lives, 390, 55);
 
     //this code to determines the size of the score rectangle
     //2 digit score creates medium rectangle to fit score value
@@ -205,6 +196,17 @@ void draw() {
       text("GAME OVER", 335, 150);
       image(sad, 500, 500);
     }
+    
+    //when you win the victory screen appears
+    if (end == true) {
+      background(0);
+      imageMode(CORNERS);
+      image(victoryScreen, 0, 0, width, height);
+      textSize(130);
+      textAlign(CENTER);
+      fill(3, 255, 59);
+      text("You Win!", 300, height/2);
+    }
   }
 
   //when the game has not started, the start screen is created (start = false)
@@ -250,6 +252,7 @@ void keyPressed() {
     score = 0;
     lives = 4;
     gameOver = false;
+    end = false;
   }
 }
 
