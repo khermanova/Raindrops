@@ -15,7 +15,7 @@ class SlideShow {
     rainForest = loadImage ("Rainforest.jpg");
     rainy = loadImage ("rainy.jpg");
     drops = loadImage ("Colordrops.jpg");
-    //PVector for dimensionsof the images
+    //PVector for dimensions of the images
     loc = new PVector(width, height);
   }
 
@@ -30,20 +30,13 @@ class SlideShow {
       image(dew, 0, 0, loc.x, loc.y);
     }
     if (slide == 3) {
-      image(leaf, 0, 0, loc.x, loc.y);
-    }
-    if (slide == 4) {
       image(rainForest, 0, 0, loc.x, loc.y);
     }
-    if (slide == 5) {
+    if (slide == 4) {
       image(storm, 0, 0, loc.x, loc.y);
     }
-    if (slide == 6) {
+    if (slide == 5) {
       image(drops, 0, 0, loc.x, loc.y);
-    }
-    //this cycles the function back to the first image
-    if (slide == 7) {
-      slide = 1;
     }
   }
 }

@@ -2,7 +2,6 @@ class Catcher {
   PVector loc;
   PVector arcLoc;
   PImage cImage;
-  PImage bUmbrella;
   PVector c1;
   PVector c2;
   PVector c3;
@@ -14,10 +13,11 @@ class Catcher {
 
 
   Catcher() {
+    //location of the catcher
     loc = new PVector (mouseX, height - 115);
+    //catcher image
     cImage = loadImage("Catcher Image.png");
-    bUmbrella = loadImage ("Black Umbrella.png");
-    //used to fill the space that the raindrops can hit in the umbrella to be caught
+    //shapes used to fill the space that the raindrops can hit in the umbrella to be caught
     //an arc and four circles
     arcLoc = new PVector (loc.x, loc.y-25);
     c1 = new PVector (arcLoc.x - 35, arcLoc.y + 25);
@@ -33,7 +33,6 @@ class Catcher {
 
   //function to display the catcher image
   void display() {
-    
     imageMode(CENTER); 
     image(cImage, loc.x, loc.y);
     //draws the shapes filling the umbrella that catch the raindrops transparent
@@ -56,7 +55,7 @@ class Catcher {
     c4.set(arcLoc.x + 70, arcLoc.y + 10);
   }
 
-  //boolean used to recognize the intersection of a raindrop and the catcher
+  //boolean used to recognize the intersection of a raindrop and the catcher to see if the raindrop is caught
   boolean catchDrop(Raindrops drop) {
     //if the two intersect...
     if (arcLoc.dist(drop.loc) < drop.d/2 || c1.dist(drop.loc) < heightL/2 + drop.d/2 || c2.dist(drop.loc) < heightS/2 + drop.d/2 || c3.dist(drop.loc) < heightL/2 + drop.d/2 || c4.dist(drop.loc) < heightS/2 + drop.d/2) {
