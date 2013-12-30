@@ -74,7 +74,7 @@ void draw() {
     //level 1 from scores 0-10
     if (score <= 10) {
       slide = 1;
-      fill(255);
+      fill(225);
       strokeWeight(10);
       textSize(70);
       textAlign(CENTER);
@@ -95,7 +95,7 @@ void draw() {
     //level 3 from scores 21-35
     if (score <= 35 && score > 20) {
       slide = 3;
-      fill(255);
+      fill(255, 230, 3);
       strokeWeight(10);
       textSize(70);
       textAlign(CENTER);
