@@ -7,7 +7,7 @@ class Raindrops {
     //location of the raindrops
     loc = new PVector(random(width), 0);
     //speed of the raindrops
-    vel = new PVector(0, random(1.5, 3));
+    vel = new PVector(0, random(1.5, 4));
     acc = new PVector(0, yAcc);
     //size of the raindrops
     d = 30;
@@ -21,11 +21,11 @@ class Raindrops {
     ellipse(loc.x, loc.y, d, d);
     triangle(loc.x - d/2, loc.y, loc.x, loc.y - d, loc.x + d/2, loc.y);
     //if the score reaches 20+, the raindrop shrinks
-    if (score <= 35 && score > 20) {
+    if (score > 10 && score <= 30) {
       d = 25;
     }
     //if the score reaches 50+, the raindrop shrinks again
-    if (score <= 65 && score > 50) {
+    if (score <= 50 && score > 30) {
       d = 15;
     }
   }
@@ -35,10 +35,10 @@ class Raindrops {
     vel.add(acc);
     loc.add(vel);
     //the raindrops begin to accelerate when they reach a certain score
-    if (score > 10 && score <= 20) {
+    if (score <= 40 && score > 20) {
       yAcc += .75;
     }
-    if (score <= 50 && score > 35){
+    if (score < 50 && score > 40){
       yAcc += .5;
     }
     //checking value of yAcc
