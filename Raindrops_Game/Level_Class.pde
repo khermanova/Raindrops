@@ -4,6 +4,8 @@ class Level {
   }
 
   void levelChange() {
+    //each level has its own background and set interval
+    
     //level 1 from scores 0-10
     if (score <= 10) {
       slide = 1;
@@ -21,21 +23,22 @@ class Level {
       textAlign(CENTER);
       text("Level 2", textLoc.x, textLoc.y);
       interval = 2000;
-      //displays colorDrop
+      //displays colorDrop Power Up
       noStroke();
       fill(random(255), random(255), random(255));
       ellipse(loc.x, loc.y, d, d);
       triangle(loc.x - d/2, loc.y, loc.x, loc.y - d, loc.x + d/2, loc.y);
+      //moves the colorDrop down the screen
       loc.add(vel);
-      //if the score reaches 20+, the raindrop shrinks
+      //if the score reaches 20+, the colorDrop shrinks
       if (score > 10 && score <= 30) {
         d = 25;
       }
-      //if the score reaches 50+, the raindrop shrinks again
+      //if the score reaches 50+, the colorDrop shrinks again
       if (score <= 50 && score > 30) {
         d = 15;
       }
-      //if the colordrop is caught
+      //if the colordrop is caught the score is increased by 5 
       if (arcLoc.dist(loc) < d/2 || c1.dist(loc) < heightL/2 + d/2 || c2.dist(loc) < heightS/2 + d/2 || c3.dist(loc) < heightL/2 + d/2 || c4.dist(loc) < heightS/2 + d/2) {
         score += 5;
       }
@@ -65,15 +68,15 @@ class Level {
       ellipse(loc.x, loc.y, d, d);
       triangle(loc.x - d/2, loc.y, loc.x, loc.y - d, loc.x + d/2, loc.y);
       loc.add(vel);
-      //if the score reaches 20+, the raindrop shrinks
+      //if the score reaches 20+, the colorDrop shrinks
       if (score > 10 && score <= 30) {
         d = 25;
       }
-      //if the score reaches 50+, the raindrop shrinks again
+      //if the score reaches 50+, the colorDrop shrinks again
       if (score <= 50 && score > 30) {
         d = 15;
       }
-      //if the colordrop is caught
+      //if the colordrop is caught the score is increased by 5
       if (arcLoc.dist(loc) < d/2 || c1.dist(loc) < heightL/2 + d/2 || c2.dist(loc) < heightS/2 + d/2 || c3.dist(loc) < heightL/2 + d/2 || c4.dist(loc) < heightS/2 + d/2) {
         score += 5;
       }

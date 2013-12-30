@@ -1,17 +1,12 @@
 class Catcher {
   PVector loc;
-  
   PImage cImage;
-
 
   Catcher() {
     //location of the catcher
     loc = new PVector (mouseX, height - 115);
     //catcher image
-    cImage = loadImage("Catcher Image.png");
-    //shapes used to fill the space that the raindrops can hit in the umbrella to be caught
-    //an arc and four circles
-    
+    cImage = loadImage("Catcher Image.png");    
   }
 
   //function to display the catcher image
@@ -50,10 +45,13 @@ class Catcher {
     }
   }
   
+  //boolean used to recognize the intersection of an extra life and the catcher to see if the life is caught
   boolean catchHeart(){
+    //if the two intersect...
     if(c2.dist(fallHeart) < 23 + heightS/2 || c1.dist(fallHeart) < 23 + heightL/2 || c3.dist(fallHeart) < 23 + heightL/2 || c4.dist(fallHeart) < 23 + heightS/2 || arcLoc.dist(fallHeart) < 23){
       return true;
     }
+    //if they do not intersect...
     else{
       return false;
     }

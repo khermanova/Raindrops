@@ -39,7 +39,6 @@ int heightS;
 int widthL; 
 int widthS; 
 
-
 void setup() {
   size(700, 700);
   background = loadImage("rainy.jpg");
@@ -67,7 +66,7 @@ void setup() {
   heart3 = loadImage("Heart3.png");
   //boolean for losing the game
   gameOver = false;
-  //player given three lives
+  //player is given three lives
   lives = 3;
   //boolean for losing lives when raindrops are dropped
   lossLife = false;
@@ -75,11 +74,15 @@ void setup() {
   sad = loadImage("Sad Face.png");
   //PVector for level text location
   textLoc = new PVector(250, 75);
+  //level changer
   progress = new Level();
   //this boolean controls the parts of the game including display/use of catcher, score, lives, raindrops
   game = true;
+  //image for the falling life
   extraLife = loadImage("Falling Life.png");
+  //location of the falling life
   fallHeart = new PVector(random(width), -50);
+  //speed of the falling life
   heartVel = new PVector(0, .5);
   //location of the raindrops
   loc = new PVector(random(width), 0);
@@ -87,7 +90,8 @@ void setup() {
   vel = new PVector(0, random(1.5, 4));
   //size of the raindrops
   d = 30;
-  //catcher objects
+  //shapes used to fill the space that the raindrops can hit in the umbrella to be caught
+  //an arc and four circles
   arcLoc = new PVector (loc.x, loc.y-25);
   c1 = new PVector (arcLoc.x - 35, arcLoc.y + 25);
   c2 = new PVector (arcLoc.x - 70, arcLoc.y + 10);
@@ -110,7 +114,8 @@ void draw() {
 
       //function in SlideShow Class that changes the background for each level with the variable *slide* 
       play.slideSwitch();
-
+      
+      //funcion in Level Class that controls the level and winning the game
       progress.levelChange();
       progress.win();
 
@@ -157,6 +162,7 @@ void draw() {
       textAlign(LEFT);
       textSize(40);
       text(score, 50, 80);
+      
       //rainFall array that creats the rain in the game
       for (int i = 0; i < index; i++) {
         //each of the raindrops are displayed, fall down the screen, and if one is dropped, a life is lost
@@ -180,6 +186,8 @@ void draw() {
           //displays one heart
           imageMode(CENTER);
           image(heart1, 550, 45);
+          //when the player has 1 life left, he/she gets the chance to win one back if he/she catches the falling life
+          //the extra life is displayed and falls
           image(extraLife, fallHeart.x, fallHeart.y);
           fallHeart.add(heartVel);
         }
@@ -188,13 +196,16 @@ void draw() {
           gameOver = true;
         }
 
-        //this code runs if the drop is caught by the catcher (the two intersect)
+        //this code runs if a drop is caught by the catcher (the two intersect)
         //the score increases and the drop disappears
         if (catcher1.catchDrop(rainFall[i]) == true) {
           rainFall[i].goAway();
           score++;
         }
       }
+      
+      //this code runs if the extra life is caught by the catcher (the two intersect)
+      //a life is given back and the image disappears
       if (catcher1.catchHeart() == true) {
         lives = 2;
         fallHeart.set(random(width), -50);
@@ -227,7 +238,7 @@ void draw() {
   }
 
   //when the game has not started, the start screen is created (start = false)
-  //creates start button on start screen with restart instructions
+  //creates start button on start screen with game instructions
   else {
     imageMode(CORNERS);
     image(startScreen, 0, 0, width, height);
@@ -242,17 +253,18 @@ void draw() {
     text("Start", 265, 375);
     textSize(25);
     strokeWeight(5);
-    text("Press key *r* to restart the game at any time", 75, 550);
+    text("Press key *r* to restart the game at any time", 75, 150);
+    text("Catch as many objects as you can!", 50, 550);
+    text("Don't drop more than 2 or you'll lose!", 200, 625);
   }  
   //checking to see if the interval is decreasing
   //println(interval);
   //checking to see that the lives decrease by one as raindrops hit the ground
-  //checking value of start boolean
-  //  println(gameOver);
-  //  println(lives);
-  //  println(start);
+  //checking value of start and gameOver boolean
+  //println(gameOver);
+  //println(lives);
+  //println(start);
 }
-
 
 //if the start button is pressed, the start boolean becomes true and the game begins
 void mousePressed() {
