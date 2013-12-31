@@ -15,7 +15,7 @@ class Level {
       text("Level 1", textLoc.x, textLoc.y);
     }
 
-    //level 2 from scores 10-20
+    //level 2 from scores 11-20
     if (score > 10 && score <= 20) {
       slide = 2;
       fill(255);
@@ -44,7 +44,7 @@ class Level {
       }
     }
 
-    //level 3 from scores 20-30
+    //level 3 from scores 21-30
     if (score <= 30 && score > 20) {
       slide = 3;
       fill(32, 214, 42);
@@ -54,7 +54,7 @@ class Level {
       interval = 1000;
     }
 
-    //level 4 from scores 30-40
+    //level 4 from scores 31-40
     if (score <= 40 && score > 30) {
       slide = 4;
       fill(255);
@@ -82,7 +82,7 @@ class Level {
       }
     }
 
-    //level 5 from scores 40-50
+    //level 5 from scores 41-50
     if (score < 50 && score > 40) {
       slide = 5;
       fill(255);
