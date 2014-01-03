@@ -82,7 +82,7 @@ class Level {
       }
     }
 
-    //level 5 from scores 41-50
+    //level 5 from scores 41-49
     if (score < 50 && score > 40) {
       slide = 5;
       fill(255);
