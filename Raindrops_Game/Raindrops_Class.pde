@@ -20,11 +20,11 @@ class Raindrops {
     fill(59, 121, 242);
     ellipse(loc.x, loc.y, d, d);
     triangle(loc.x - d/2, loc.y, loc.x, loc.y - d, loc.x + d/2, loc.y);
-    //if the score reaches 20+, the raindrop shrinks
+    //if the score is 11-30
     if (score > 10 && score <= 30) {
       d = 25;
     }
-    //if the score reaches 50+, the raindrop shrinks again
+    //if the score is 31-50
     if (score <= 50 && score > 30) {
       d = 15;
     }
